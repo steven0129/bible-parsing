@@ -30,22 +30,22 @@ class App extends Component {
     fetch(`http://140.123.97.228:8000/data?q=${this.state.query}`)
       .then(res => res.json())
       .then((result) => {
-        result.pop()
+        console.log(result)
         result = result.map((val, idx) => {
-          let arr = val.split('\t')
+          let content = val.split('@content:')[1].split('\n')[0]
+          let chap = val.split('@chap:')[1].split('\n')[0]
+          let verse = val.split('@verse:')[1].split('\n')[0]
           
           return {
             key: idx,
-            id: arr[0] + arr[1],
-            content: arr[2]
+            id: `${chap}:${verse}`,
+            content: content
           }
         })
 
 
         this.setState({ data: result })
       })
-
-    
   }
 
   render() {
