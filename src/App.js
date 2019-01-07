@@ -33,12 +33,13 @@ class App extends Component {
         console.log(result)
         result = result.map((val, idx) => {
           let content = val.split('@content:')[1].split('\n')[0]
+          let book = val.split('@book:')[1].split('\n')[0]
           let chap = val.split('@chap:')[1].split('\n')[0]
           let verse = val.split('@verse:')[1].split('\n')[0]
           
           return {
             key: idx,
-            id: `${chap}:${verse}`,
+            id: `${book}${chap}:${verse}`,
             content: content
           }
         })
